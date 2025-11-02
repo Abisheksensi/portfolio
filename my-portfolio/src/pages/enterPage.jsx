@@ -9,25 +9,38 @@ export default function EnterPage() {
     navigate("/home");
   };
 
+  const positions=[
+    [0, 0],      
+    [0, -120],   
+    [104, -60],  
+    [104, 60],   
+    [0, 120],    
+    [-104, 60],  
+    [-104, -60], 
+    [0, 0],
+  ]
+
   return (
     <main className="flex flex-col items-center justify-center fixed inset-0 bg-gradient-to-br from-blue-900 to-blue-600 overflow-hidden">
       {/* Animated circles */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        {[...Array(8)].map((_, i) => (
+      <div className="absolute flex items-center justify-center">
+        {positions.map(([x, y], i) => (
           <motion.div
             key={i}
-            className="absolute border border-white/20 rounded-full"
+            className="absolute border border-white/25 rounded-full"
             style={{
-              width: `${200 + i * 60}px`,
-              height: `${200 + i * 60}px`,
+              width: 240,
+              height: 240,
+              left: `${x}px`,
+              top: `${y}px`,
+              transform: `translate(${x}px, ${y}px)`,
             }}
             animate={{
               opacity: [0.3, 0.6, 0.3],
-              scale: [1, 1.03, 1],
-              rotate: [0, 360, 0],
+              rotate: [0, 360],
             }}
             transition={{
-              duration: 8 + i * 2,
+              duration: 12 + i * 2,
               repeat: Infinity,
               ease: "linear",
             }}
